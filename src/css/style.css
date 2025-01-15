@@ -34,6 +34,14 @@ body {
     gap: 5px;
 }
 
+.equal {
+    grid-column: 3 / 5;
+}
+
+.move {
+    grid-column: 4;
+}
+
 .btn {
     background: #0b0b0b;
     color: #fff;
