@@ -23,7 +23,14 @@ function deleteChar() {
 
 function calculateResult() {
     try {
-        let result = eval(displayElement.innerText.replace(/×/g, '*').replace(/÷/g, '/'));
+        let expression = displayElement.innerText.replace(/×/g, '*').replace(/÷/g, '/');
+        
+        if (expression.includes('/0')) {
+            displayElement.innerText = "Can't divide by zero!";
+            return;
+        }
+
+        let result = eval(expression);
         displayElement.innerText = result;
     } catch (error) {
         displayElement.innerText = "Error";
