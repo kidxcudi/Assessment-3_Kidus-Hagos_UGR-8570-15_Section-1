@@ -1,10 +1,28 @@
 let displayElement = document.getElementById('display');
 
 function appendValue(value) {
-    if (displayElement.innerText === "0") {
-        displayElement.innerText = value;
+    const currentDisplay = displayElement.innerText;
+    if (value === '.') {
+        const lastNumber = currentDisplay.split(/[\+\-\*\/]/).pop();
+        if (lastNumber.includes('.')) {
+            return;
+        }
+    }
+
+    const operators = ['+', '-', '*', '/'];
+    const lastChar = currentDisplay[currentDisplay.length - 1];
+    if (operators.includes(value)) {
+        if (operators.includes(lastChar)) {
+            displayElement.innerText = currentDisplay.slice(0, -1) + value;
+        } else {
+            displayElement.innerText += value;
+        }
     } else {
-        displayElement.innerText += value;
+        if (currentDisplay === "0" && value !== '.') {
+            displayElement.innerText = value;
+        } else {
+            displayElement.innerText += value;
+        }
     }
 }
 
